@@ -8,6 +8,7 @@ void podpunkt_b();
 int main()
 {
     podpunkt_a();
+    podpunkt_b();
 }
 
 void podpunkt_a()
@@ -19,6 +20,7 @@ void podpunkt_a()
     {
         cout << "Liczba " << (i + 1) << ": ";
         cin >> liczby;
+
         licznik[liczby]++;
     }
     for (const auto &indeks : licznik)
@@ -40,7 +42,28 @@ void podpunkt_a()
     cout << "Liczba trojek: " << trojki << endl;
     cout << "Liczba czworek: " << czworki << endl;
 }
-
 void podpunkt_b()
 {
+    string slowo = "";
+    char znak;
+    bool znaleziono = false;
+    int licznik_t = 0, licznik_a = 0, licznik_o = 0;
+
+    cout << "Wpisuj znaki, az utworza slowo 'tato':" << endl;
+
+    while (!znaleziono) {
+        cin >> znak;
+        
+        if (znak == 't') licznik_t++;
+        else if (znak == 'a') licznik_a++;
+        else if (znak == 'o') licznik_o++;
+        
+        if (licznik_t >= 2 && licznik_a >= 1 && licznik_o >= 1) {
+            znaleziono = true;
+        }
+        
+        slowo += znak;
+    }
+
+    cout << "Zebrano wystarczajaco znakow do utworzenia slowa 'tato'!" << endl;
 }
