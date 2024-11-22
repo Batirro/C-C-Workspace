@@ -1,14 +1,52 @@
 #include <stdio.h>
 
+// Prototypy funkcji
+void menu();
 void podpunkt_a();
 void podpunkt_b();
+void podpunkt_c();
+void podpunkt_d();
+void podpunkt_e();
 
 int main()
 {
-    podpunkt_a();
-    podpunkt_b();
+    menu(); // Wywołanie menu z wybranym podpunktem
 }
 
+//Ciała funkcji
+void menu()
+{
+    int podpunkt;
+    printf("Menu:\n");
+    printf("1. Podpunkt a\n");
+    printf("2. Podpunkt b\n");
+    printf("3. Podpunkt c\n");
+    printf("4. Podpunkt d\n");
+    printf("5. Podpunkt e\n");
+    printf("Wybierz podpunkt: ");
+    scanf("%d", &podpunkt);
+    switch (podpunkt)
+    {
+    case 1:
+        podpunkt_a();
+        break;
+    case 2:
+        podpunkt_b();
+        break;
+    case 3:
+        podpunkt_c();
+        break;
+    case 4:
+        podpunkt_d();
+        break;
+    case 5:
+        podpunkt_e();
+        break;
+    default:
+        printf("Nieprawidlowy podpunkt!\n");
+        break;
+    }
+}
 void podpunkt_a()
 {
     int liczby[4];
@@ -58,4 +96,74 @@ void podpunkt_b()
     }
     
     printf("Zebrano wystarczajaco znakow do utworzenia slowa 'tato'!\n");
+}
+void podpunkt_c()
+{
+    float liczby[4];
+    int i, j;
+    float temp;
+    
+    for(i = 0; i < 4; i++) {
+        printf("Podaj liczbe %d: ", i+1);
+        scanf("%f", &liczby[i]);
+    }
+    
+    for(i = 0; i < 4-1; i++) {
+        for(j = 0; j < 4-i-1; j++) {
+            if(liczby[j] > liczby[j+1]) {
+                temp = liczby[j];
+                liczby[j] = liczby[j+1];
+                liczby[j+1] = temp;
+            }
+        }
+    }
+    
+    float srednia = (liczby[2] + liczby[3]) / 2;
+    
+    printf("Srednia z dwoch najwiekszych liczb: %.2f\n", srednia);
+}
+void podpunkt_d()
+{
+    float liczby[3];
+    int i, j;
+    float temp;
+    
+    for(i = 0; i < 3; i++) {
+        printf("Podaj liczbe %d: ", i+1);
+        scanf("%f", &liczby[i]);
+    }
+    
+    for(i = 0; i < 2; i++) {
+        for(j = 0; j < 2-i; j++) {
+            if(liczby[j] > liczby[j+1]) {
+                temp = liczby[j];
+                liczby[j] = liczby[j+1];
+                liczby[j+1] = temp;
+            }
+        }
+    }
+    
+    printf("Liczby w kolejnosci rosnacej:\n");
+    for(i = 0; i < 3; i++) {
+        printf("%.2f ", liczby[i]);
+    }
+    printf("\n");
+}
+void podpunkt_e()
+{
+    float liczby[4];
+    int i, j;
+    int licznik = 0;
+
+    for(i = 0; i < 4; i++) {
+        printf("Podaj liczbe %d: ", i+1);
+        scanf("%f", &liczby[i]);
+    }
+
+    for(i = 0; i < 4; i++) {
+        if(liczby[i] < 0) {
+            licznik++;
+        }
+    }
+    printf("Liczba ujemnych liczb: %d\n", licznik);
 }
