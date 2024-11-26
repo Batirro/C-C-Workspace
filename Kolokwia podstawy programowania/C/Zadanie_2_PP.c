@@ -45,11 +45,30 @@ void menu()
     case 3:
         podpunkt_c();
         break;
+    case 4:
+        podpunkt_d();
+        break;
+    case 5:
+        podpunkt_e();
+        break;
+    case 6:
+        podpunkt_f();
+        break;
+    case 7:
+        podpunkt_g();
+        break;
+    case 8:
+        podpunkt_h();
+        break;
+    case 9:
+        podpunkt_i();
+        break;
     default:
         printf("Nieprawidlowy podpunkt!\n");
         break;
     }
 }
+
 void podpunkt_a()
 {
     int n, count = 0, num = 1;
@@ -116,5 +135,87 @@ void podpunkt_c()
         printf("Wiecej bylo cyfr.\n");
     } else {
         printf("Liczba liter i cyfr byla taka sama.\n");
+    }
+}
+void podpunkt_d()
+{
+    int n, ujemne_n, suma = 0, kwadrat;
+    printf("Podaj liczbe n: ");
+    scanf("%d", &n);
+    ujemne_n = n * -1;
+    for (int i = ujemne_n; i < n; i++)
+    {
+        if (i % 2 != 0)
+        {
+            kwadrat = i * i;
+            suma += kwadrat;
+        }
+    }
+    printf("Suma kwadratow liczb nieparzystych w przedziale od %d do %d wynosi %d\n", ujemne_n, n, suma);
+}
+void podpunkt_e()
+{
+    int poczatek, koniec, iloczyn = 1;
+    printf("Podaj poczatek przedzialu: ");
+    scanf("%d", &poczatek);
+    printf("Podaj koniec przedzialu: ");
+    scanf("%d", &koniec);
+    for (int i = poczatek; i <= koniec; i++)
+    {
+        if (i % 2 != 0)
+        {
+            iloczyn *= i;
+        }
+    }
+    printf("Iloczyn liczb nieparzystych w przedziale od %d do %d wynosi %d\n", poczatek, koniec, iloczyn);
+}
+void podpunkt_f()
+{
+    int n;
+    double suma = 1;
+    printf("Podaj liczbe n: ");
+    scanf("%d", &n);
+    
+    for(int i = 0; i <= n; i++) {
+        suma += sin(i);
+    }
+    
+    printf("Suma %d wyrazow ciagu wynosi: %lf\n", n, suma);
+}
+void podpunkt_g()
+{
+    int x, poczatek = 1, koniec = 1000;
+    float ulamek;
+    printf("Liczby spełniające warunek:\n");
+    for (x = poczatek; x <= koniec; x++)
+    {
+        ulamek = ((x*x)/(50-x)) - sin(x);
+        if (ulamek >= 0)
+        {
+            printf("%d\n", x);
+        }
+    }
+}
+void podpunkt_h()
+{
+    int n, suma = 0;
+    printf("Podaj liczbe n: ");
+    scanf("%d", &n);
+    
+    for(int i = -n; i <= n; i++) {
+        if(i % 2 == 0) {
+            suma += i;
+        }
+    }
+    
+    printf("Suma liczb parzystych w przedziale od -%d do %d wynosi: %d\n", n, n, suma);
+}
+void podpunkt_i()
+{
+    printf("Wszystkie 4-literowe palindromy:\n"); 
+    for(char i = 'a'; i <= 'z'; i++) {
+        for(char j = 'a'; j <= 'z'; j++) {
+            printf("%c%c%c%c\n", i, j, j, i);
+        }
     }
 }
