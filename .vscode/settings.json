@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "math.h": "c"
+        "math.h": "c",
+        "Zadanie_1_PP.C": "cpp"
     }
 }
