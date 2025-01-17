@@ -66,6 +66,7 @@ void podpunkt_d(char lancuch[])
     }
     printf("Nowy lancuch: %s\n", lancuch);
 }
+
 void podpunkt_e(char lancuch[])
 {
     int j = 0;
@@ -143,7 +144,7 @@ void podpunkt_h(char lancuch[])
     }
     if (dlugosc_lancucha > dlugosc)
     {
-       dlugosc_lancucha = dlugosc_lancucha - dlugosc;
+        dlugosc_lancucha = dlugosc_lancucha - dlugosc;
     }
     else
     {
@@ -160,15 +161,16 @@ void podpunkt_h(char lancuch[])
     printf("Nowy lancuch: %s\n", lancuch);
 }
 
-void podpunkt_i(char lancuch[]) {
+void podpunkt_i(char lancuch[])
+{
     int dlugosc = 0;
-    while (lancuch[dlugosc] != '\0') 
+    while (lancuch[dlugosc] != '\0')
     {
         dlugosc++;
     }
 
     bool symetryczny = true;
-    for (int i = 0; i < dlugosc / 2; i++) 
+    for (int i = 0; i < dlugosc / 2; i++)
     {
         if (lancuch[i] != lancuch[dlugosc - i - 1]) // Porównujemy na bierząco znaki pierwsze i ostatnie z łańcucha znaków
         {
@@ -177,10 +179,11 @@ void podpunkt_i(char lancuch[]) {
         }
     }
 
-    if (symetryczny) 
+    if (symetryczny)
     {
         printf("Lancuch jest symetryczny");
-    } else 
+    }
+    else
     {
         printf("Lancuch nie jest symetryczny");
     }

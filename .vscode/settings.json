@@ -2,6 +2,7 @@
     "files.associations": {
         "iostream": "cpp",
         "math.h": "c",
-        "Zadanie_1_PP.C": "cpp"
+        "Zadanie_1_PP.C": "cpp",
+        "locale.h": "c"
     }
 }
