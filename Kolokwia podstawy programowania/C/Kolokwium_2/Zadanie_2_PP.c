@@ -35,6 +35,38 @@ struct firma
     float pensja;
     char plec;
 };
+// Podpunkt e
+struct sklep_RTV
+{
+    char nazwa_towaru[50];
+    int ilosc_sztuk;
+    float cena;
+    float waga;
+};
+// Podpunkt f
+struct stypendia
+{
+    char imie[25];
+    char nazwisko[30];
+    float stypendium;
+    bool zaliczenie;
+};
+// Podpunkt g
+struct dane_studentow
+{
+    char imie[15];
+    char nazwisko[25];
+    int wiek;
+    bool zaliczenie;
+};
+// Podpunkt h
+struct rozklad_jazdy
+{
+    char nazwa_miasta[30];
+    unsigned int dlugosc_trasy;
+    float godzina_odjazdu;
+    char typ_pociagu;
+};
 
 void podpunkt_a()
 {
@@ -399,6 +431,242 @@ void podpunkt_d()
     }
 }
 
+void podpunkt_e()
+{
+    struct sklep_RTV towary[50];
+    int ile_towarow = 0;
+    // Towar 1
+    int j = 0;
+    char nazwa[] = "Telewizor";
+    while (nazwa[j] != '\0')
+    {
+        towary[ile_towarow].nazwa_towaru[j] = nazwa[j];
+        j++;
+    }
+    towary[ile_towarow].nazwa_towaru[j] = '\0';
+    towary[ile_towarow].ilosc_sztuk = 4;
+    towary[ile_towarow].cena = 1223.44;
+    towary[ile_towarow].waga = 20.74;
+    ile_towarow++;
+
+    // Towar 2
+    j = 0;
+    char nazwa_2[] = "Pralka";
+    while (nazwa_2[j] != '\0')
+    {
+        towary[ile_towarow].nazwa_towaru[j] = nazwa_2[j];
+        j++;
+    }
+    towary[ile_towarow].nazwa_towaru[j] = '\0';
+    towary[ile_towarow].ilosc_sztuk = 5;
+    towary[ile_towarow].cena = 3000.84;
+    towary[ile_towarow].waga = 30.85;
+    ile_towarow++;
+
+    // Program wyszykujący najtańsze produkty
+
+    int najtanszy = 0;
+    for (int i = 0; i < ile_towarow; i++)
+    {
+        if (towary[i].cena < towary[najtanszy].cena)
+        {
+            najtanszy = i;
+        }
+    }
+    printf("Najtanszy produkt to:\n");
+    printf("Nazwa: %s\n", towary[najtanszy].nazwa_towaru);
+    printf("Ilosc: %d\n", towary[najtanszy].ilosc_sztuk);
+    printf("Cena: %.2f\n", towary[najtanszy].cena);
+    printf("Waga: %.2f\n", towary[najtanszy].waga);
+}
+
+void podpunkt_f()
+{
+    struct stypendia studenci[100];
+    int ilosc_studentow = 0;
+    // Student 1
+    int j = 0;
+    char imie[] = "Adam";
+    while (imie[j] != '\0')
+    {
+        studenci[ilosc_studentow].imie[j] = imie[j];
+        j++;
+    }
+    studenci[ilosc_studentow].imie[j] = '\0';
+
+    j = 0;
+    char nazwisko[] = "Bazan";
+    while (nazwisko[j] != '\0')
+    {
+        studenci[ilosc_studentow].nazwisko[j] = nazwisko[j];
+        j++;
+    }
+    studenci[ilosc_studentow].nazwisko[j] = '\0';
+    studenci[ilosc_studentow].stypendium = 3200.50;
+    studenci[ilosc_studentow].zaliczenie = true;
+    ilosc_studentow++;
+
+    // Student 2
+    j = 0;
+    char imie_1[] = "Jakub";
+    while (imie_1[j] != '\0')
+    {
+        studenci[ilosc_studentow].imie[j] = imie_1[j];
+        j++;
+    }
+    studenci[ilosc_studentow].imie[j] = '\0';
+
+    j = 0;
+    char nazwisko_1[] = "Piasecki";
+    while (nazwisko_1[j] != '\0')
+    {
+        studenci[ilosc_studentow].nazwisko[j] = nazwisko_1[j];
+        j++;
+    }
+    studenci[ilosc_studentow].nazwisko[j] = '\0';
+    studenci[ilosc_studentow].stypendium = 2500.45;
+    studenci[ilosc_studentow].zaliczenie = false;
+    ilosc_studentow++;
+
+    // Student 3
+    j = 0;
+    char imie_2[] = "Tomasz";
+    while (imie_2[j] != '\0')
+    {
+        studenci[ilosc_studentow].imie[j] = imie_2[j];
+        j++;
+    }
+    studenci[ilosc_studentow].imie[j] = '\0';
+
+    j = 0;
+    char nazwisko_2[] = "Dzialowy";
+    while (nazwisko_2[j] != '\0')
+    {
+        studenci[ilosc_studentow].nazwisko[j] = nazwisko_2[j];
+        j++;
+    }
+    studenci[ilosc_studentow].nazwisko[j] = '\0';
+    studenci[ilosc_studentow].stypendium = 2300.46;
+    studenci[ilosc_studentow].zaliczenie = true;
+    ilosc_studentow++;
+
+    // Program znajdujący studenta z zaliczonym semesterm i najniższym stypdenium
+    int najmniejszy = 0;
+    for (int i = 0; i < ilosc_studentow; i++)
+    {
+        if (studenci[i].stypendium < studenci[najmniejszy].stypendium && studenci[i].zaliczenie)
+        {
+            najmniejszy = i;
+        }
+    }
+    printf("Student z zaliczonym semesterm i najmniejszym stypendium:\n");
+    printf("Imie: %s\n", studenci[najmniejszy].imie);
+    printf("Nazwisko: %s\n", studenci[najmniejszy].nazwisko);
+    printf("Stypendium: %.2f\n", studenci[najmniejszy].stypendium);
+    printf("Czy zaliczył?: %d\n", studenci[najmniejszy].zaliczenie);
+}
+
+void podpunkt_g()
+{
+    struct dane_studentow student[50];
+    int ilosc_studentow = 0;
+    // Student 1
+    int j = 0;
+    char imie[] = "Adam";
+    while (imie[j] != '\0')
+    {
+        student[ilosc_studentow].imie[j] = imie[j];
+        j++;
+    }
+    student[ilosc_studentow].imie[j] = '\0';
+
+    j = 0;
+    char nazwisko[] = "Adamski";
+    while (nazwisko[j] != 0)
+    {
+        student[ilosc_studentow].nazwisko[j] = nazwisko[j];
+        j++;
+    }
+    student[ilosc_studentow].nazwisko[j] = '\0';
+    student[ilosc_studentow].wiek = 20;
+    student[ilosc_studentow].zaliczenie = true;
+    ilosc_studentow++;
+
+    // Student 2
+    j = 0;
+    char imie_1[] = "Jakub";
+    while (imie_1[j] != '\0')
+    {
+        student[ilosc_studentow].imie[j] = imie_1[j];
+        j++;
+    }
+    student[ilosc_studentow].imie[j] = '\0';
+
+    j = 0;
+    char nazwisko_1[] = "Huc";
+    while (nazwisko[j] != 0)
+    {
+        student[ilosc_studentow].nazwisko[j] = nazwisko_1[j];
+        j++;
+    }
+    student[ilosc_studentow].nazwisko[j] = '\0';
+    student[ilosc_studentow].wiek = 19;
+    student[ilosc_studentow].zaliczenie = false;
+    ilosc_studentow++;
+
+    // Program sprawdzający czy imie i nazwisko studenta zaczynaja się na tę samą literę
+    printf("Dane studentow, których imie i nazwisko zaczyna się na tę samą literę:\n");
+    for (int i = 0; i < ilosc_studentow; i++)
+    {
+        if (student[i].imie[0] == student[i].nazwisko[0])
+        {
+            printf("Imię: %s\n", student[i].imie);
+            printf("Nazwisko: %s\n", student[i].nazwisko);
+        }
+    }
+}
+
+void podpunkt_h()
+{
+    struct rozklad_jazdy pociagi[50];
+    int ilosc_pociagow = 0;
+    // Pociag 1
+    int j = 0;
+    char miasto[] = "Wrocław";
+    while (miasto[j] != '\0')
+    {
+        pociagi[ilosc_pociagow].nazwa_miasta[j] = miasto[j];
+        j++;
+    }
+    pociagi[ilosc_pociagow].nazwa_miasta[j] = '\0';
+    pociagi[ilosc_pociagow].dlugosc_trasy = 1250;
+    pociagi[ilosc_pociagow].godzina_odjazdu = 12.50;
+    pociagi[ilosc_pociagow].typ_pociagu = 'o';
+    ilosc_pociagow++;
+    // Pociag 2
+    j = 0;
+    char miasto_1[] = "Wrocław";
+    while (miasto_1[j] != '\0')
+    {
+        pociagi[ilosc_pociagow].nazwa_miasta[j] = miasto_1[j];
+        j++;
+    }
+    pociagi[ilosc_pociagow].nazwa_miasta[j] = '\0';
+    pociagi[ilosc_pociagow].dlugosc_trasy = 500;
+    pociagi[ilosc_pociagow].godzina_odjazdu = 14.58;
+    pociagi[ilosc_pociagow].typ_pociagu = 'o';
+    ilosc_pociagow++;
+    // Program obliczający średnią trasę pociągów osobowych do danego miasta
+    float srednia_dlugosc = 0;
+    for (int i = 0; i < ilosc_pociagow; i++)
+    {
+        if (pociagi[i].typ_pociagu == 'o')
+            srednia_dlugosc += pociagi[i].dlugosc_trasy;
+    }
+    srednia_dlugosc /= ilosc_pociagow;
+    printf("Średnia długość trasy pociągów osobowych do miasta %s to %f\n", miasto, srednia_dlugosc);
+}
+
 int main()
 {
     setlocale(LC_ALL, "pl_PL.UTF-8");
@@ -420,6 +688,18 @@ int main()
         break;
     case 4:
         podpunkt_d();
+        break;
+    case 5:
+        podpunkt_e();
+        break;
+    case 6:
+        podpunkt_f();
+        break;
+    case 7:
+        podpunkt_g();
+        break;
+    case 8:
+        podpunkt_h();
         break;
     default:
         printf("Nie ma takiego podpunktu.");
