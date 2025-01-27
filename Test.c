@@ -1,69 +1,58 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
-// Funkcja generująca losowy ciąg znaków
-void generuj_ciag_znakow(const char *nazwa_pliku, int dlugosc)
+int dlugoscNajkrotszego(const char *tekst)
 {
-    // Inicjalizacja generatora liczb losowych
-    srand(time(NULL));
-
-    // Otwarcie pliku do zapisu binarnego
-    FILE *plik = fopen(nazwa_pliku, "wb");
-
-    // Sprawdzenie poprawności otwarcia pliku
-    if (plik == NULL)
+    // Sprawdzenie poprawności parametru
+    if (tekst == NULL)
     {
-        printf("Błąd otwarcia pliku\n");
-        return;
+        return -1;
     }
 
-    // Generowanie losowych znaków
-    for (int i = 0; i < dlugosc; i++)
-    {
-        // Losowanie znaku z zakresu 'a' do 'z'
-        char znak = 'a' + rand() % 26;
+    // Inicjalizacja zmiennych
+    int aktDlugosc = 0;
+    int minDlugosc = -1;
+    int i = 0;
 
-        // Zapis znaku do pliku
-        fputc(znak, plik);
+    // Przejście przez cały tekst
+    while (tekst[i] != '\0')
+    {
+        // Pomijanie białych znaków na początku wyrazu
+        while (tekst[i] == ' ' || tekst[i] == '\t')
+        {
+            i++;
+        }
+
+        // Liczenie długości bieżącego wyrazu
+        aktDlugosc = 0;
+        while (tekst[i] != ' ' && tekst[i] != '\0' && tekst[i] != '\t')
+        {
+            aktDlugosc++;
+            i++;
+        }
+
+        // Aktualizacja minimalnej długości
+        if (aktDlugosc > 0)
+        {
+            if (minDlugosc == -1 || aktDlugosc < minDlugosc)
+            {
+                minDlugosc = aktDlugosc;
+            }
+        }
     }
 
-    // Zamknięcie pliku
-    fclose(plik);
-
-    printf("Wygenerowano plik %s o długości %d znaków\n", nazwa_pliku, dlugosc);
+    return minDlugosc;
 }
 
-// Funkcja wyświetlająca zawartość pliku (opcjonalna)
-void wyswietl_zawartosc(const char *nazwa_pliku)
-{
-    FILE *plik = fopen(nazwa_pliku, "rb");
-
-    if (plik == NULL)
-    {
-        printf("Błąd otwarcia pliku\n");
-        return;
-    }
-
-    printf("Zawartość pliku:\n");
-
-    int znak;
-    while ((znak = fgetc(plik)) != EOF)
-    {
-        printf("%c", znak);
-    }
-    printf("\n");
-
-    fclose(plik);
-}
-
+// Przykład użycia
 int main()
 {
-    // Generowanie pliku o długości 1000 znaków
-    generuj_ciag_znakow("E:\\C-C-Workspace\\Kolokwia podstawy programowania\\C\\Kolokwium_2\\Dane\\dane.dat", 1000);
+    const char *tekst1 = "Ala ma kota";
+    const char *tekst2 = "Programowanie w jezyku C";
+    const char *tekst3 = "";
 
-    // Opcjonalne wyświetlenie zawartości pliku
-    // wyswietl_zawartosc("dane.dat");
+    printf("Najkrótsza długość w '%s': %d\n", tekst1, dlugoscNajkrotszego(tekst1));
+    printf("Najkrótsza długość w '%s': %d\n", tekst2, dlugoscNajkrotszego(tekst2));
+    printf("Najkrótsza długość w '%s': %d\n", tekst3, dlugoscNajkrotszego(tekst3));
 
     return 0;
 }
