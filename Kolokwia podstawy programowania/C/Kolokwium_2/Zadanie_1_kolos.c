@@ -82,11 +82,30 @@ void zadanie_1_g(char *tekst)
             }
         }
     }
-    printf("Najmniejsza dlugosc wyrazu to: %d", min_dlugosc);
+    printf("Najmniejsza dlugosc wyrazu to: %d\n", min_dlugosc);
 }
 
-void zadanie_1_h(char *tekst)
+char *zadanie_1_h(char *tekst)
 {
+    int dlugosc_wyrazu = 0;
+    while (tekst[dlugosc_wyrazu] != '\0')
+    {
+        dlugosc_wyrazu++;
+    }
+    char *wynik = malloc(dlugosc_wyrazu + 1);
+    int i = 0, j = 0, w = 0;
+
+    while (tekst[i])
+    {
+        if (tekst[i] == ' ')
+            w++;
+        if (w != 1)
+            wynik[j++] = tekst[i];
+        i++;
+    }
+
+    wynik[j] = 0;
+    return wynik;
 }
 
 int main()
@@ -100,4 +119,8 @@ int main()
     // Zadanie_1_g
     char tekst_g[] = "Najdluzszy napis c";
     zadanie_1_g(tekst_g);
+    // Zadanie_1_h
+    char tekst_h[] = "Ala nie ma kota";
+    char *wynik_h[] = zadanie_1_h(tekst_h);
+    printf("Nowy tekst: %s", wynik_h);
 }

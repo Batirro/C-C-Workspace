@@ -1,58 +1,33 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int dlugoscNajkrotszego(const char *tekst)
+char *usun_drugi_wyraz(const char *tekst)
 {
-    // Sprawdzenie poprawności parametru
-    if (tekst == NULL)
+    int dlugosc_wyrazu = 0;
+    while (tekst[dlugosc_wyrazu] != '\0')
     {
-        return -1;
+        dlugosc_wyrazu++;
+    }
+    char *wynik = malloc(dlugosc_wyrazu + 1);
+    int i = 0, j = 0, w = 0;
+
+    while (tekst[i])
+    {
+        if (tekst[i] == ' ')
+            w++;
+        if (w != 1)
+            wynik[j++] = tekst[i];
+        i++;
     }
 
-    // Inicjalizacja zmiennych
-    int aktDlugosc = 0;
-    int minDlugosc = -1;
-    int i = 0;
-
-    // Przejście przez cały tekst
-    while (tekst[i] != '\0')
-    {
-        // Pomijanie białych znaków na początku wyrazu
-        while (tekst[i] == ' ' || tekst[i] == '\t')
-        {
-            i++;
-        }
-
-        // Liczenie długości bieżącego wyrazu
-        aktDlugosc = 0;
-        while (tekst[i] != ' ' && tekst[i] != '\0' && tekst[i] != '\t')
-        {
-            aktDlugosc++;
-            i++;
-        }
-
-        // Aktualizacja minimalnej długości
-        if (aktDlugosc > 0)
-        {
-            if (minDlugosc == -1 || aktDlugosc < minDlugosc)
-            {
-                minDlugosc = aktDlugosc;
-            }
-        }
-    }
-
-    return minDlugosc;
+    wynik[j] = 0;
+    return wynik;
 }
 
-// Przykład użycia
 int main()
 {
-    const char *tekst1 = "Ala ma kota";
-    const char *tekst2 = "Programowanie w jezyku C";
-    const char *tekst3 = "";
-
-    printf("Najkrótsza długość w '%s': %d\n", tekst1, dlugoscNajkrotszego(tekst1));
-    printf("Najkrótsza długość w '%s': %d\n", tekst2, dlugoscNajkrotszego(tekst2));
-    printf("Najkrótsza długość w '%s': %d\n", tekst3, dlugoscNajkrotszego(tekst3));
-
+    char *t1 = usun_drugi_wyraz("Ala ma kota");
+    printf("%s\n", t1);
+    free(t1);
     return 0;
 }
