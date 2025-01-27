@@ -11,9 +11,6 @@ void TABLICA_WSK(float *tab);
 void TABELKA(int rows, int cols);
 
 #define SIZE 10 // Potrzebne do zadania 3
-// Potrzebne do zadania 4
-#define MAX_ROWS 12
-#define MAX_COLS 12
 
 int main()
 {
@@ -22,13 +19,6 @@ int main()
 
     printf("Podaj dokladnosc obliczen (EPS, 0 < EPS < 1): ");
     scanf("%lf", &eps);
-
-    if (eps <= 0 || eps >= 1)
-    {
-        printf("Nieprawidłowa wartość EPS\n");
-        return 1;
-    }
-
     double result = SUMA_SZEREGU(eps);
     printf("Suma szeregu: %.10f\n", result);
 
@@ -53,11 +43,6 @@ int main()
     scanf("%d", &rows);
     printf("Podaj liczbe kolumn (1-12): ");
     scanf("%d", &cols);
-    if (rows < 1 || rows > MAX_ROWS || cols < 1 || cols > MAX_COLS)
-    {
-        printf("Liczba wierszy i kolumn musi być w przedziale 1-12.\n");
-        return 1;
-    }
     TABELKA(rows, cols);
 
     return 0;
@@ -133,27 +118,66 @@ void TABLICA_WSK(float *tab)
 void TABELKA(int rows, int cols)
 {
     // Rysowanie górnej ramki
-    printf("+");
-    for (int j = 0; j < cols; j++)
+
+    printf("+-----+");
+
+    for (int j = 1; j <= cols; j++)
     {
+
         printf("-----+");
     }
+
     printf("\n");
+
+    // Rysowanie nagłówka kolumn
+
+    printf("|     |");
+
+    for (int j = 1; j <= cols; j++)
+    {
+
+        printf(" %2d  |", j); // Nagłówki kolumn
+    }
+
+    printf("\n");
+
+    // Rysowanie dolnej ramki nagłówka
+
+    printf("|-----|");
+
+    for (int j = 0; j < cols; j++)
+    {
+
+        printf("-----+");
+    }
+
+    printf("\n");
+
     // Rysowanie wierszy tabeli
+
     for (int i = 1; i <= rows; i++)
     {
-        printf("|");
+
+        printf("| %2d  |", i); // Wypisanie numeru wiersza
+
         for (int j = 1; j <= cols; j++)
         {
+
             printf(" %2d  |", i * j); // Wypisanie wyniku mnożenia
         }
+
         printf("\n");
+
         // Rysowanie dolnej ramki
-        printf("+");
+
+        printf("|-----|");
+
         for (int j = 0; j < cols; j++)
         {
+
             printf("-----+");
         }
+
         printf("\n");
     }
 }
