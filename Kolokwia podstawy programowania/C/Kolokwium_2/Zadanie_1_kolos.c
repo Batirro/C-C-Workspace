@@ -123,4 +123,5 @@ int main()
     char tekst_h[] = "Ala nie ma kota";
     char *wynik_h[] = zadanie_1_h(tekst_h);
     printf("Nowy tekst: %s", wynik_h);
+    free(wynik_h);
 }
